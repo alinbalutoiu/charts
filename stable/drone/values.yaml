@@ -109,6 +109,12 @@ sourceControl:
     username:
     passwordKey: password
 
+## The license key for running drone if required
+## https://docs.drone.io/installation/reference/drone-license
+licenseKey:
+  create: false
+  data: |
+
 server:
   ## If not set, it will be autofilled with the cluster host.
   ## Host shoud be just the hostname.

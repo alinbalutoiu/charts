@@ -82,6 +82,10 @@ spec:
           - name: DRONE_USER_CREATE
             value: username:{{ .Values.server.adminUser }},machine:false,admin:true
           {{- end }}
+          {{- if .Values.licenseKey.create }}
+          - name: DRONE_LICENSE
+            value: "/etc/drone.key"
+          {{- end }}
           - name: DRONE_RPC_SECRET
             valueFrom:
               secretKeyRef:
@@ -125,6 +129,12 @@ spec:
         {{ end }}
         - name: data
           mountPath: /var/lib/drone
+        {{- if .Values.licenseKey.create }}
+        - name: license-key
+          mountPath: /etc/drone.key
+          subPath: drone.key
+          readOnly: true
+        {{- end }}
 {{- with .Values.server.extraContainers }}
 {{ tpl . $ | indent 6 }}
 {{- end }}
@@ -144,6 +154,11 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end -}}
+      {{- if .Values.licenseKey.create }}
+      - name: license-key
+        configMap:
+          name: drone-licensekey
+      {{- end }}
 {{- with .Values.server.extraVolumes }}
 {{ tpl . $ | indent 6 }}
 {{- end }}

@@ -1,0 +1,14 @@
+{{ if .Values.licenseKey.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: drone-licensekey
+  labels:
+    app: {{ template "drone.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  drone.key:
+    {{- toYaml .Values.licenseKey.data | nindent 4 }}
+{{ end }}

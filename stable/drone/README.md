@@ -80,6 +80,8 @@ The following table lists the configurable parameters of the drone charts and th
 | `sourceControl.gogs`               | values to configure gogs    | see values.yaml       |
 | `sourceControl.bitbucketCloud`               | values to configure bitbucket cloud    | see values.yaml       |
 | `sourceControl.bitbucketServer`               | values to configure bitbucket server (stash)    | see values.yaml       |
+| `licenseKey.create`         | Specifies whether drone license should be created                                             | `false`                     |
+| `licenseKey.data`           | Drone license key for the enterprise version                                                  | ``                          |
 | `server.host`               | Drone **server** hostname (should match callback url in oauth config)              | `(internal hostname)`       |
 | `server.protocol`               | Drone **server** scheme/protocol [http,https]                                                         | `http`       |
 | `server.env`                | Drone **server** environment variables                                                        | `(default values)`          |
